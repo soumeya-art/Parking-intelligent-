@@ -2,12 +2,6 @@
 import { parking } from './api'
 import { parkingStats as mockStats, floors as mockFloors, spots as mockSpots } from '../data/parkingData'
 
-const mockReservations = [
-  { id: 1, spot: 'RDC-A3', date: '14/03/2025', startTime: '09:15', endTime: '12:45', duration: '3h30', status: 'terminée' },
-  { id: 2, spot: 'B1-B2', date: '13/03/2025', startTime: '14:00', endTime: '18:30', duration: '4h30', status: 'terminée' },
-  { id: 4, spot: 'RDC-A1', date: '15/03/2025', startTime: '10:00', endTime: '—', duration: '—', status: 'à venir' },
-]
-
 export async function getParkingStats() {
   try {
     return await parking.stats()
@@ -39,12 +33,10 @@ export async function getSpots(idEtablissement, date) {
   }
 }
 
+/** Historique conducteur uniquement — pas de données fictives : si l’API échoue, la liste est vide. */
 export async function getReservations() {
-  try {
-    return await parking.reservations()
-  } catch {
-    return mockReservations
-  }
+  const data = await parking.reservations()
+  return Array.isArray(data) ? data : []
 }
 
 export async function annulerReservation(idReservation) {

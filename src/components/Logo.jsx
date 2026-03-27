@@ -8,8 +8,8 @@ export default function Logo({ size = 48 }) {
       <rect x="20" y="24" width="4" height="3" rx="0.5" fill="var(--bg-primary)" />
       <defs>
         <linearGradient id="logoGrad" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#00e5a0" />
-          <stop offset="1" stopColor="#00b87a" />
+          <stop stopColor="var(--accent)" />
+          <stop offset="1" stopColor="var(--accent-dim)" />
         </linearGradient>
       </defs>
     </svg>

@@ -2,10 +2,76 @@
   animation: fadeIn 0.3s ease;
 }
 
+.historique-error-banner {
+  margin: 0 auto 1rem;
+  max-width: 1280px;
+  padding: 1rem 1.25rem;
+  border-radius: 10px;
+  border: 1px solid var(--danger);
+  background: color-mix(in srgb, var(--danger) 12%, transparent);
+  color: var(--text-primary);
+  font-size: 0.95rem;
+}
+
 .empty-state {
   text-align: center;
   padding: 3rem;
   color: var(--text-secondary);
+}
+
+.history-avis-section {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.history-avis-section-title {
+  margin: 0 0 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.history-avis-loading {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.history-avis-error {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--danger);
+}
+
+.history-avis-done {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--available);
+  font-weight: 500;
+}
+
+.history-avis-locked {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.history-avis-btn-block {
+  width: 100%;
+  max-width: 420px;
+  justify-content: center;
+  min-height: 48px;
+  font-size: 0.95rem;
+}
+
+.history-avis-hint-block {
+  display: block;
+  max-width: 100%;
 }
 
 .history-list {
@@ -158,6 +224,26 @@
   background: rgba(245, 158, 11, 0.2);
 }
 
+.history-avis-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.65rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  background: var(--bg-secondary);
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  line-height: 1.3;
+  max-width: 100%;
+}
+
+.historique-avis-subtitle {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
 .history-ticket-qr {
   margin-top: 1rem;
   padding: 1rem;
@@ -217,6 +303,20 @@
   border-radius: 10px;
   border: 1px solid var(--border);
 }
+.history-avis-form .history-avis-form-title {
+  margin: 0 0 0.5rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.history-avis-form .history-avis-form-desc {
+  margin: 0 0 1rem;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
 .history-avis-form p {
   margin: 0 0 0.75rem;
   font-size: 0.95rem;

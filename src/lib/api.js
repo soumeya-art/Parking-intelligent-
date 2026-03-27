@@ -1,12 +1,12 @@
 // API MOUBARIK - Backend WAMP/PHP
 // En dev: utilise le proxy Vite (/api) - même origine, pas de CORS
 // En prod ou si VITE_API_URL est défini: URL complète
-// En dev: /api (proxy Vite) ou VITE_API_URL si défini
-// VITE_API_URL nécessaire si le projet n'est pas dans www (ex: Documents)
+import { getActiveToken } from './tokens'
+
 const API_URL = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? '/api' : '/api')
 
 function getToken() {
-  return localStorage.getItem('token')
+  return getActiveToken()
 }
 
 export async function api(endpoint, options = {}) {
@@ -34,7 +34,11 @@ export const auth = {
     api('auth.php', { method: 'POST', body: JSON.stringify({ action: 'login', email, motDePasse, role }) }),
   register: (nom, prenom, email, telephone, motDePasse) =>
     api('auth.php', { method: 'POST', body: JSON.stringify({ action: 'register', nom, prenom, email, telephone, motDePasse }) }),
-  verify: () => api('auth.php', { method: 'POST', body: JSON.stringify({ action: 'verify', token: getToken() }) }),
+  /** Vérifie un jeton précis (corps de la requête ; ne dépend pas du chemin de la page) */
+  verifyToken: (token) =>
+    token
+      ? api('auth.php', { method: 'POST', body: JSON.stringify({ action: 'verify', token }) })
+      : Promise.resolve({ valid: false }),
   forgotPassword: (email) =>
     api('auth.php', { method: 'POST', body: JSON.stringify({ action: 'forgot-password', email, baseUrl: window.location.origin }) }),
   resetPassword: (token, motDePasse) =>
@@ -95,7 +99,14 @@ export const parking = {
   marquerNotificationLue: (id) =>
     api('parking.php', { method: 'POST', body: JSON.stringify({ action: 'notification-lue', idNotification: id }) }),
   avisEvaluable: (idReservation) =>
-    api(`parking.php?action=avis-reservation-evaluable&idReservation=${idReservation}`),
+    api('parking.php', {
+      method: 'POST',
+      body: JSON.stringify({
+        action: 'avis-reservation-evaluable',
+        idReservation,
+        token: getToken(),
+      }),
+    }),
   avisSubmit: (idReservation, note, commentaire) =>
     api('parking.php', { method: 'POST', body: JSON.stringify({ action: 'avis-submit', idReservation, note, commentaire }) }),
 }

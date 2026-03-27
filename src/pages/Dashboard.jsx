@@ -124,11 +124,11 @@ export default function Dashboard() {
           <div className="confirmation-icon-circle">
             <CheckCircle size={64} />
           </div>
-          <h2>{payerEnAttenteAdmin ? 'Paiement en attente' : 'Paiement effectué'}</h2>
+          <h2>{payerEnAttenteAdmin ? 'En attente de confirmation' : 'Paiement effectué'}</h2>
           <p>Montant : {montantAPayer} FDJ</p>
           {payerEnAttenteAdmin ? (
             <p className="payer-attente-msg">
-              Votre paiement D-Money a été enregistré. L&apos;administrateur doit confirmer la réception. Vous recevrez une notification lorsque c&apos;est fait.
+              Votre paiement a été enregistré. L&apos;administrateur doit confirmer la réception (D-Money ou espèces) avant la validation définitive. Vous recevrez une notification une fois le paiement confirmé.
             </p>
           ) : (
             <p>Merci !</p>
@@ -160,11 +160,13 @@ export default function Dashboard() {
               <Banknote size={20} /> Espèces
             </button>
           </div>
-          {isDMoney && (
+          {isDMoney ? (
             <>
               <input type="tel" placeholder="77 XX XX XX" value={paymentPhone} onChange={(e) => setPaymentPhone(e.target.value.replace(/\D/g, '').slice(0, 8))} className="payer-phone" />
               <p className="payer-dmoney-hint">Le paiement D-Money sera enregistré puis confirmé par l&apos;administrateur après réception.</p>
             </>
+          ) : (
+            <p className="payer-dmoney-hint">Les espèces sont enregistrées comme demande de paiement ; l&apos;administrateur confirmera la réception des FDJ avant de valider définitivement. Vous serez notifié à ce moment-là.</p>
           )}
           <button className="btn-primary" onClick={handlePayer} disabled={loading || (isDMoney && paymentPhone.replace(/\D/g, '').length < 8)}>
             {loading ? 'Traitement...' : `Payer ${montantAPayer} FDJ`}

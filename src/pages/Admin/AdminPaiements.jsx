@@ -65,16 +65,16 @@ export default function AdminPaiements() {
     <div className="admin-page">
       <h1><CreditCard size={28} /> Paiements</h1>
       <p className="subtitle">
-        Seuls les paiements <strong>D-Money</strong> nécessitent une confirmation. Les paiements en espèces sont validés automatiquement.
+        Les paiements <strong>D-Money</strong> et <strong>espèces</strong> restent en attente jusqu&apos;à confirmation par un administrateur (réception effective). Le conducteur reçoit alors une notification de validation.
       </p>
 
       {loadError && <div className="error-banner">{loadError}</div>}
       {confirmError && <div className="error-banner">{confirmError}</div>}
 
-      <h2 className="paiements-section-title">À confirmer (D-Money)</h2>
+      <h2 className="paiements-section-title">À confirmer (D-Money &amp; espèces)</h2>
       <div className="paiements-table">
         {pendingList.length === 0 ? (
-          <p className="empty">Aucun paiement D-Money en attente. Un conducteur doit payer par D-Money pour voir apparaître un paiement ici.</p>
+          <p className="empty">Aucun paiement en attente. Les demandes apparaissent ici lorsqu&apos;un conducteur a validé un mode de paiement après sa session.</p>
         ) : (
           pendingList.map((p) => (
             <div key={p.idPaiement} className="paiement-row">

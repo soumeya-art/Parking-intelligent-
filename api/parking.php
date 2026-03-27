@@ -12,8 +12,40 @@ function respond($data) {
 
 function getToken() {
     $auth = $_SERVER['HTTP_AUTHORIZATION'] ?? $_SERVER['REDIRECT_HTTP_AUTHORIZATION'] ?? '';
+    if (!$auth && function_exists('getallheaders')) {
+        $h = getallheaders();
+        if (is_array($h)) {
+            foreach (['Authorization', 'authorization'] as $k) {
+                if (!empty($h[$k])) {
+                    $auth = $h[$k];
+                    break;
+                }
+            }
+        }
+    }
     if (strpos($auth, 'Bearer ') === 0) return substr($auth, 7);
     return null;
+}
+
+/** Table Avis absente des anciennes installs — création auto pour ne pas bloquer les conducteurs */
+function ensureAvisTable($pdo) {
+    static $done = false;
+    if ($done) return;
+    try {
+        $pdo->exec("CREATE TABLE IF NOT EXISTS Avis (
+            idAvis INT AUTO_INCREMENT PRIMARY KEY,
+            idReservation INT NOT NULL,
+            idConducteur INT NOT NULL,
+            note INT NOT NULL,
+            commentaire TEXT,
+            dateAvis TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            UNIQUE KEY uk_reservation (idReservation),
+            KEY idx_avis_conducteur (idConducteur)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
+        $done = true;
+    } catch (Exception $e) {
+        /* table existe ou droits ; ne pas fixer $done pour retenter plus tard si besoin */
+    }
 }
 
 function getTokenFromInput($input) {
@@ -378,14 +410,15 @@ if ($action === 'payer-session' && $method === 'POST') {
     $stmtPl = $pdo->prepare("SELECT idPlace FROM Reservation WHERE idReservation = ?");
     $stmtPl->execute([$idReservation]);
     $pl = $stmtPl->fetch(PDO::FETCH_ASSOC);
-    $statutPaiement = $idSysteme == 2 ? 'successful' : 'pending';
+    // D-Money et espèces : en attente de confirmation admin avant notification « paiement reçu »
+    $statutPaiement = 'pending';
     try {
         $pdo->prepare("INSERT INTO Paiement (idReservation, idSysteme, montant, methodePaiement, statut) VALUES (?, ?, ?, ?, ?)")->execute([$idReservation, $idSysteme, $montant, $methodeNom, $statutPaiement]);
         if ($pl) $pdo->prepare("UPDATE Place SET statut = 'available' WHERE idPlace = ?")->execute([$pl['idPlace']]);
-        if ($statutPaiement === 'successful') {
-            $notifMsg = "Paiement reçu : place " . $res['numero'] . ", $montant FDJ.";
+        if ($idSysteme == 1) {
+            $notifMsg = "Paiement D-Money enregistré. L'administrateur doit confirmer la réception avant la validation définitive.";
         } else {
-            $notifMsg = "Paiement D-Money enregistré. En attente de confirmation par l'administrateur.";
+            $notifMsg = "Paiement en espèces déclaré. L'administrateur doit confirmer la réception des FDJ avant la validation définitive.";
         }
         $pdo->prepare("INSERT INTO Notification (idConducteur, message, typeNotification, lu) VALUES (?, ?, 'paiement', 0)")->execute([$res['idConducteur'], $notifMsg]);
     } catch (Exception $e) {
@@ -393,8 +426,8 @@ if ($action === 'payer-session' && $method === 'POST') {
     }
     respond([
         'success' => true,
-        'message' => $statutPaiement === 'successful' ? 'Paiement effectué.' : 'Paiement enregistré. L\'administrateur confirmera la réception.',
-        'enAttenteAdmin' => $statutPaiement === 'pending'
+        'message' => 'Paiement enregistré. L\'administrateur confirmera la réception (D-Money ou espèces).',
+        'enAttenteAdmin' => true
     ]);
 }
 
@@ -596,7 +629,7 @@ if ($action === 'paiements-en-attente') {
     respond(['pending' => $pending, 'recent' => $recent]);
 }
 
-// Confirmer paiement (admin) — marque le paiement D-Money comme reçu (place déjà libérée par payer-session)
+// Confirmer paiement (admin) — D-Money ou espèces (place déjà libérée par payer-session)
 if ($action === 'confirmer-paiement' && $method === 'POST') {
     $token = getToken() ?? getTokenFromInput($input);
     $data = $token ? json_decode(base64_decode($token), true) : null;
@@ -610,12 +643,13 @@ if ($action === 'confirmer-paiement' && $method === 'POST') {
     $stmt = $pdo->prepare("UPDATE Paiement SET statut = 'successful' WHERE idPaiement = ? AND statut = 'pending'");
     $stmt->execute([$idPaiement]);
     if ($stmt->rowCount() > 0) {
-        $stmt = $pdo->prepare("SELECT r.idReservation, r.idPlace, r.idConducteur, pl.numero, r.montant FROM Paiement p JOIN Reservation r ON p.idReservation = r.idReservation JOIN Place pl ON r.idPlace = pl.idPlace WHERE p.idPaiement = ?");
+        $stmt = $pdo->prepare("SELECT r.idReservation, r.idPlace, r.idConducteur, pl.numero, r.montant, p.methodePaiement FROM Paiement p JOIN Reservation r ON p.idReservation = r.idReservation JOIN Place pl ON r.idPlace = pl.idPlace WHERE p.idPaiement = ?");
         $stmt->execute([$idPaiement]);
         $r = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($r) {
             // La place a déjà été libérée par payer-session (conducteur). Ne pas la ré-réserver.
-            $msg = "Paiement D-Money confirmé. Place " . $r['numero'] . " — " . $r['montant'] . " FDJ reçus.";
+            $methode = $r['methodePaiement'] ?: 'Paiement';
+            $msg = "Paiement confirmé par l'administrateur ($methode). Place " . $r['numero'] . " — " . $r['montant'] . " FDJ reçus.";
             $pdo->prepare("INSERT INTO Notification (idConducteur, message, typeNotification, lu) VALUES (?, ?, 'paiement_confirme', 0)")->execute([$r['idConducteur'], $msg]);
         }
     }
@@ -634,7 +668,7 @@ if ($action === 'rapport') {
     $total = array_sum($counts);
     $stmt = $pdo->query("SELECT COUNT(*) as nb FROM Reservation WHERE DATE(dateDebut) = CURDATE()");
     $reservationsToday = $stmt->fetch(PDO::FETCH_ASSOC)['nb'];
-    $stmt = $pdo->query("SELECT COALESCE(SUM(montant), 0) as total FROM Paiement WHERE DATE(dateP) = CURDATE()");
+    $stmt = $pdo->query("SELECT COALESCE(SUM(montant), 0) as total FROM Paiement WHERE DATE(dateP) = CURDATE() AND statut = 'successful'");
     $revenueToday = $stmt->fetch(PDO::FETCH_ASSOC)['total'];
     respond([
         'placesTotal' => $total,
@@ -683,25 +717,49 @@ if ($action === 'notification-lue' && $method === 'POST') {
     respond(['success' => true]);
 }
 
-// Avis — vérifier si une réservation peut être évaluée (terminée, payée, sans avis)
+// Avis — éligibilité (GET ou POST avec token dans le corps si Authorization filtrée par le serveur)
+// Paiement : conducteur a enregistré un paiement (pending ou successful) → avis possible ; pendingPaymentConfirmation si admin pas encore validé.
 if ($action === 'avis-reservation-evaluable') {
+    ensureAvisTable($pdo);
     $token = getToken();
+    if ($method === 'POST' && !empty($input['token'])) {
+        $token = $token ?: $input['token'];
+    }
     $data = $token ? json_decode(base64_decode($token), true) : null;
-    if (!$data || $data['role'] !== 'conducteur') respond(['evaluable' => false]);
-    $idReservation = (int)($_GET['idReservation'] ?? 0);
-    if (!$idReservation) respond(['evaluable' => false]);
+    $empty = ['evaluable' => false, 'pendingPaymentConfirmation' => false, 'hasReview' => false];
+    if (!$data || $data['role'] !== 'conducteur') respond($empty);
+    $idReservation = (int)($input['idReservation'] ?? $_GET['idReservation'] ?? 0);
+    if (!$idReservation) respond($empty);
     try {
         $stmt = $pdo->prepare("SELECT 1 FROM Avis WHERE idReservation = ?");
         $stmt->execute([$idReservation]);
-        if ($stmt->fetch()) respond(['evaluable' => false]);
-        $stmt = $pdo->prepare("SELECT r.idReservation FROM Reservation r JOIN Paiement p ON p.idReservation = r.idReservation WHERE r.idReservation = ? AND r.idConducteur = ? AND r.dateFin IS NOT NULL AND p.statut IN ('successful','pending')");
+        if ($stmt->fetch()) {
+            respond(['evaluable' => false, 'pendingPaymentConfirmation' => false, 'hasReview' => true]);
+        }
+        $stmt = $pdo->prepare("SELECT idReservation FROM Reservation WHERE idReservation = ? AND idConducteur = ? AND dateFin IS NOT NULL AND statut != 'cancelled'");
         $stmt->execute([$idReservation, $data['id']]);
-        respond(['evaluable' => (bool)$stmt->fetch()]);
-    } catch (Exception $e) { respond(['evaluable' => false]); }
+        if (!$stmt->fetch()) respond($empty);
+
+        $stmt = $pdo->prepare("SELECT statut FROM Paiement WHERE idReservation = ? ORDER BY idPaiement DESC LIMIT 1");
+        $stmt->execute([$idReservation]);
+        $pay = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (!$pay) respond($empty);
+        $st = strtolower(trim((string)($pay['statut'] ?? '')));
+        if ($st === 'pending') {
+            respond(['evaluable' => true, 'pendingPaymentConfirmation' => true, 'hasReview' => false]);
+        }
+        if ($st === 'successful') {
+            respond(['evaluable' => true, 'pendingPaymentConfirmation' => false, 'hasReview' => false]);
+        }
+        respond($empty);
+    } catch (Exception $e) {
+        respond($empty);
+    }
 }
 
 // Avis — soumettre une évaluation
 if ($action === 'avis-submit' && $method === 'POST') {
+    ensureAvisTable($pdo);
     $token = getToken() ?? getTokenFromInput($input);
     $data = $token ? json_decode(base64_decode($token), true) : null;
     if (!$data || $data['role'] !== 'conducteur') respond(['success' => false, 'error' => 'Connexion requise']);
@@ -710,10 +768,10 @@ if ($action === 'avis-submit' && $method === 'POST') {
     $commentaire = trim($input['commentaire'] ?? '');
     if ($idReservation < 1 || $note < 1 || $note > 5) respond(['success' => false, 'error' => 'Données invalides']);
     try {
-        $stmt = $pdo->prepare("SELECT r.idReservation, r.idConducteur FROM Reservation r JOIN Paiement p ON p.idReservation = r.idReservation WHERE r.idReservation = ? AND r.idConducteur = ? AND r.dateFin IS NOT NULL");
+        $stmt = $pdo->prepare("SELECT r.idReservation, r.idConducteur FROM Reservation r JOIN Paiement p ON p.idReservation = r.idReservation WHERE r.idReservation = ? AND r.idConducteur = ? AND r.dateFin IS NOT NULL AND p.statut IN ('pending','successful')");
         $stmt->execute([$idReservation, $data['id']]);
         $res = $stmt->fetch(PDO::FETCH_ASSOC);
-        if (!$res) respond(['success' => false, 'error' => 'Réservation non trouvée ou non payée']);
+        if (!$res) respond(['success' => false, 'error' => 'Réservation non trouvée ou aucun paiement enregistré pour cette session']);
         $stmt = $pdo->prepare("SELECT 1 FROM Avis WHERE idReservation = ?");
         $stmt->execute([$idReservation]);
         if ($stmt->fetch()) respond(['success' => false, 'error' => 'Déjà évaluée']);

@@ -44,14 +44,16 @@ export default function Header() {
             </NavLink>
           )}
         </nav>
-        <ThemeToggle />
+        <div className="header-actions">
+          <ThemeToggle />
+          <Notifications />
+        </div>
         {user && (
           <div className="header-user">
-            <Notifications />
             <NavLink to={user.role === 'conducteur' ? '/profil' : '#'} className="user-name">
               {user.prenom || user.nom}
             </NavLink>
-            <button onClick={() => { logout(); navigate('/connexion') }} className="logout-btn-header">
+            <button type="button" onClick={() => { logout(); navigate('/connexion') }} className="logout-btn-header">
               <LogOut size={18} /> Déconnexion
             </button>
           </div>

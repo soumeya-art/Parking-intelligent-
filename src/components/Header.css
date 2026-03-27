@@ -13,7 +13,17 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 2rem;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+/* Thème + cloche notifications (conducteur) */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  margin-left: auto;
 }
 
 .logo {
@@ -87,6 +97,10 @@
 .nav {
   display: flex;
   gap: 0.5rem;
+  flex: 1;
+  justify-content: center;
+  min-width: 0;
+  flex-wrap: wrap;
 }
 
 .nav-link {
@@ -112,16 +126,41 @@
 
 @media (max-width: 768px) {
   .header-inner {
-    flex-direction: column;
-    align-items: stretch;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto auto;
+    align-items: center;
     padding: 1rem;
-    gap: 1rem;
+    gap: 0.75rem 1rem;
+  }
+
+  .logo {
+    grid-column: 1;
+    grid-row: 1;
+    min-width: 0;
+  }
+
+  .header-actions {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+    margin-left: 0;
   }
 
   .nav {
+    grid-column: 1 / -1;
+    grid-row: 2;
     flex-wrap: wrap;
     justify-content: center;
     gap: 0.5rem;
+    flex: unset;
+  }
+
+  .header-user {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    justify-content: center;
+    flex-wrap: wrap;
   }
 
   .nav-link {

@@ -39,11 +39,17 @@ export default function Notifications() {
 
   return (
     <div className="notifications-wrap">
-      <button className="notifications-btn" onClick={() => {
-        if (!open) refresh()
-        setOpen(!open)
-      }}>
-        <Bell size={20} />
+      <button
+        type="button"
+        className="notifications-btn"
+        onClick={() => {
+          if (!open) refresh()
+          setOpen(!open)
+        }}
+        aria-label="Notifications"
+        title="Voir les notifications"
+      >
+        <Bell size={20} aria-hidden />
         {unreadCount > 0 && <span className="notifications-badge">{unreadCount}</span>}
       </button>
       {open && (
