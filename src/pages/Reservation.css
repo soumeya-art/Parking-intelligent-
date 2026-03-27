@@ -1,0 +1,561 @@
+.reservation {
+  animation: fadeIn 0.3s ease;
+}
+
+.error-banner {
+  background: rgba(239, 68, 68, 0.2);
+  color: var(--danger);
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.reservation-form {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-row label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.form-row select,
+.form-row input {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  font-size: 1rem;
+}
+
+.form-row select:focus,
+.form-row input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.parking-choice-section {
+  margin-bottom: 2rem;
+}
+
+.parking-choice-section h2 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.reservation-search-wrap {
+  position: relative;
+  margin-bottom: 1rem;
+}
+.reservation-search-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+}
+.reservation-search-input {
+  width: 100%;
+  padding: 0.85rem 1rem 0.85rem 2.75rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  font-size: 1rem;
+}
+.reservation-search-input::placeholder {
+  color: var(--text-muted);
+}
+.reservation-search-input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.etablissements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  margin-top: 0.75rem;
+}
+
+.etablissement-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+  padding: 1.25rem;
+  border: 2px solid var(--border);
+  background: var(--bg-card);
+  border-radius: 12px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s;
+}
+
+.etablissement-btn:hover {
+  border-color: var(--accent);
+  background: rgba(0, 229, 160, 0.05);
+}
+
+.etablissement-btn.selected {
+  border-color: var(--accent);
+  background: var(--accent-glow);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+
+.etablissement-nom {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.etablissement-adresse {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.spots-selection {
+  margin-bottom: 2rem;
+}
+
+.spots-selection h2 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.spots-hint {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.spots-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.no-spots {
+  color: var(--text-muted);
+  padding: 1rem;
+  grid-column: 1 / -1;
+}
+
+.spot-btn {
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  border: 2px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.spot-btn:hover {
+  border-color: var(--accent);
+  background: var(--bg-card-hover);
+}
+
+.spot-btn.selected {
+  border-color: var(--accent);
+  background: var(--accent-glow);
+  color: var(--accent);
+}
+
+.reservation-hint {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.75rem;
+}
+
+.reservation-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-primary {
+  padding: 0.875rem 1.75rem;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(135deg, var(--accent), var(--accent-dim));
+  color: var(--bg-primary);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px var(--accent-glow);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.confirmation-card {
+  text-align: center;
+  max-width: 480px;
+  margin: 3rem auto;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 3rem;
+  box-shadow: 0 0 40px var(--accent-glow);
+  animation: fadeIn 0.4s ease;
+}
+
+.confirmation-icon {
+  color: var(--available);
+  margin-bottom: 1.5rem;
+}
+
+.confirmation-card h1 {
+  font-size: 1.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.confirmation-card p {
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.duree-options {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.duree-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  color: var(--text-secondary);
+}
+
+.duree-option input {
+  accent-color: var(--accent);
+}
+
+.paiement-section {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.paiement-section h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.montant-display {
+  background: var(--bg-secondary);
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.montant-label {
+  color: var(--text-secondary);
+}
+
+.montant-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.paiement-dmoney-input {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(99, 102, 241, 0.08);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: 12px;
+}
+
+.paiement-dmoney-input label {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.paiement-dmoney-input .required {
+  color: #ef4444;
+}
+
+.paiement-dmoney-input input {
+  padding: 0.75rem 1rem;
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  border-radius: 8px;
+  border: 2px solid var(--border);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  width: 100%;
+  max-width: 220px;
+}
+
+.paiement-dmoney-input input:focus {
+  border-color: var(--accent);
+  outline: none;
+}
+
+.paiement-dmoney-hint {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin: 0.5rem 0 0;
+}
+
+.payment-step-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.payment-step-content {
+  background: var(--bg-card);
+  padding: 2rem;
+  border-radius: 16px;
+  max-width: 420px;
+  width: 90%;
+}
+
+.payment-step-content h3 { margin-top: 0; }
+
+.payment-step-content p {
+  margin: 1rem 0;
+  color: var(--text-secondary);
+}
+
+.payment-step-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.btn-secondary {
+  padding: 0.6rem 1.2rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.confirmation-ticket {
+  margin: 1.5rem 0;
+  padding: 1.25rem;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+.ticket-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1rem !important;
+}
+
+.ticket-qr {
+  display: inline-block;
+  padding: 0.75rem;
+  background: white;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+}
+
+.ticket-qr svg {
+  display: block;
+}
+
+.ticket-code {
+  font-family: monospace;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+.confirmation-notif {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-top: 0.5rem;
+}
+
+.paiement-desc {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin: -0.25rem 0 0.75rem;
+}
+
+.paiement-choisir {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.paiement-methodes {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.paiement-btn {
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  border: 2px solid var(--border);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  min-width: 120px;
+}
+
+.paiement-btn:hover {
+  border-color: var(--accent);
+  background: var(--bg-card-hover);
+}
+
+.paiement-btn.selected {
+  border-color: var(--accent);
+  background: var(--accent-glow);
+  color: var(--accent);
+  box-shadow: 0 0 15px var(--accent-glow);
+}
+
+.paiement-nom {
+  font-size: 1.1rem;
+}
+
+.paiement-check {
+  font-size: 0.8rem;
+  opacity: 0.9;
+}
+
+.paiement-confirm {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(34, 197, 94, 0.15);
+  border-radius: 8px;
+  color: var(--available);
+  font-size: 0.95rem;
+}
+
+.confirmation-montant {
+  color: var(--accent) !important;
+  font-weight: 600 !important;
+}
+
+.confirmation-qr-ticket {
+  margin: 1.5rem 0;
+  padding: 1.25rem;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+.confirmation-qr-ticket p {
+  margin: 0 0 0.75rem;
+  font-size: 0.95rem;
+}
+.confirmation-qr-svg {
+  display: block;
+  margin: 0 auto;
+}
+.confirmation-ticket-code {
+  margin-top: 0.75rem !important;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem !important;
+  color: var(--accent) !important;
+}
+
+.confirmation-detail {
+  margin: 1rem 0 1.5rem !important;
+}
+
+.confirmation-detail.reservation-15min {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.5rem;
+  text-align: left;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1rem !important;
+}
+
+.confirmation-card .btn-primary {
+  display: inline-block;
+  margin-top: 1rem;
+}
+
+/* Mobile : boutons plus grands, zones tactiles */
+@media (max-width: 768px) {
+  .reservation-form { padding: 1.25rem; gap: 1.25rem; }
+  .etablissement-btn {
+    min-height: 80px;
+    padding: 1.25rem;
+  }
+  .place-btn { min-height: 56px; padding: 1rem; }
+  .reservation-cta,
+  .btn-primary,
+  .reservation .btn {
+    min-height: 50px;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+  }
+  .paiement-btn {
+    min-height: 90px;
+    min-width: 140px;
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .etablissements-grid { grid-template-columns: 1fr; }
+  .paiement-methodes { flex-direction: column; }
+  .paiement-btn { width: 100%; min-width: unset; min-height: 72px; }
+}

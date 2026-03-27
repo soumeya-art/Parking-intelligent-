@@ -1,0 +1,607 @@
+/* MOUBARIK Parking - Page d'accueil Djibouti */
+
+.accueil {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #0a0e14 0%, #0d131a 50%, #0a0e14 100%);
+}
+
+/* Header */
+.accueil-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 1rem 2rem;
+  background: rgba(10, 14, 20, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.accueil-header-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.accueil-logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: white;
+  text-decoration: none;
+}
+
+.accueil-logo-text {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #00e5a0 0%, #00d4aa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.accueil-logo-sub {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+.accueil-nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.accueil-nav-link {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  transition: color 0.2s;
+}
+
+.accueil-nav-link:hover {
+  color: #00e5a0;
+}
+
+.accueil-logout-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: inherit;
+  font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.accueil-nav-btn {
+  background: linear-gradient(135deg, #00e5a0 0%, #00b87a 100%);
+  color: #0a0e14;
+  padding: 0.6rem 1.25rem;
+  border-radius: 10px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.accueil-nav-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 229, 160, 0.35);
+}
+
+/* Hero */
+.accueil-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.accueil-hero-bg {
+  position: absolute;
+  inset: 0;
+}
+
+.accueil-hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.accueil-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(10, 14, 20, 0.88) 0%,
+    rgba(10, 14, 20, 0.65) 40%,
+    rgba(0, 229, 160, 0.08) 100%
+  );
+}
+
+.accueil-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  padding: 2rem;
+  text-align: center;
+}
+
+.accueil-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(0, 229, 160, 0.15);
+  color: #00e5a0;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(0, 229, 160, 0.3);
+  animation: fadeInUp 0.8s ease;
+}
+
+.accueil-hero h1 {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 800;
+  line-height: 1.1;
+  color: white;
+  margin-bottom: 1rem;
+  letter-spacing: -0.03em;
+  animation: fadeInUp 0.8s ease 0.1s both;
+}
+
+.accueil-hero-highlight {
+  background: linear-gradient(135deg, #00e5a0 0%, #00d4aa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.accueil-hero-desc {
+  font-size: 1.15rem;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+  max-width: 540px;
+  margin-left: auto;
+  margin-right: auto;
+  animation: fadeInUp 0.8s ease 0.2s both;
+}
+
+.accueil-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  animation: fadeInUp 0.8s ease 0.3s both;
+}
+
+.accueil-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 1.75rem;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.accueil-cta.primary {
+  background: linear-gradient(135deg, #00e5a0 0%, #00b87a 100%);
+  color: #0a0e14;
+  box-shadow: 0 4px 20px rgba(0, 229, 160, 0.4);
+}
+
+.accueil-cta.primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(0, 229, 160, 0.5);
+}
+
+.accueil-cta.primary.large {
+  padding: 1.25rem 2.25rem;
+  font-size: 1.1rem;
+}
+
+.accueil-cta.secondary {
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.accueil-cta.secondary:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Gallery */
+.accueil-gallery {
+  padding: 5rem 2rem;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.accueil-gallery h2 {
+  font-size: 2.25rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  color: white;
+}
+
+.accueil-gallery-desc {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 2.5rem;
+  font-size: 1.05rem;
+}
+
+.accueil-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.accueil-gallery-item.span-2 {
+  grid-column: span 2;
+}
+
+@media (max-width: 768px) {
+  .accueil-gallery-item.span-2 {
+    grid-column: span 1;
+  }
+}
+
+.accueil-gallery-item {
+  border-radius: 16px;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+.accueil-gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.accueil-gallery-item:hover img {
+  transform: scale(1.08);
+}
+
+/* Features */
+.accueil-features {
+  padding: 5rem 2rem;
+  background: linear-gradient(180deg, #0a0e14 0%, #0d1219 100%);
+}
+
+.accueil-features h2 {
+  font-size: 2.25rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 3rem;
+  color: white;
+}
+
+.accueil-features-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
+}
+
+.accueil-feature {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.accueil-feature:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(0, 229, 160, 0.3);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.accueil-feature-icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, rgba(0, 229, 160, 0.2) 0%, rgba(0, 184, 122, 0.1) 100%);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #00e5a0;
+  margin-bottom: 1.25rem;
+}
+
+.accueil-feature h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.accueil-feature p {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* CTA Section */
+.accueil-cta-section {
+  position: relative;
+  padding: 6rem 2rem;
+  overflow: hidden;
+}
+
+.accueil-cta-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+}
+
+.accueil-cta-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(10, 14, 20, 0.92) 0%, rgba(10, 14, 20, 0.75) 50%, rgba(0, 229, 160, 0.2) 100%);
+}
+
+.accueil-cta-content {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.accueil-cta-content h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.accueil-cta-content p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+/* Footer */
+.accueil-footer {
+  padding: 3rem 2rem 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.accueil-footer-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.accueil-footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 600;
+}
+
+.accueil-footer-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.accueil-footer-links a {
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.accueil-footer-links a:hover {
+  color: #00e5a0;
+}
+
+.accueil-footer-copy {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.9rem;
+}
+
+.accueil-footer-link-btn {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 0;
+  font-family: inherit;
+}
+
+.accueil-footer-link-btn:hover {
+  color: #00e5a0;
+}
+
+/* Modal Réserver */
+.accueil-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: accueilModalFade 0.2s ease;
+}
+
+@keyframes accueilModalFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.accueil-modal {
+  background: var(--bg-card);
+  border-radius: 20px;
+  padding: 2rem;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  border: 1px solid var(--border);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+  animation: accueilModalSlide 0.3s ease;
+}
+
+@keyframes accueilModalSlide {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.accueil-modal h3 {
+  font-size: 1.35rem;
+  margin-bottom: 0.5rem;
+  color: white;
+}
+
+.accueil-modal > p {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  font-size: 1.05rem;
+}
+
+.accueil-modal-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.accueil-modal-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+  width: 100%;
+}
+
+.accueil-modal-btn.connexion {
+  background: linear-gradient(135deg, #00e5a0 0%, #00b87a 100%);
+  color: #0a0e14;
+}
+
+.accueil-modal-btn.connexion:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 229, 160, 0.4);
+}
+
+.accueil-modal-btn.inscription {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.accueil-modal-btn.inscription:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(0, 229, 160, 0.5);
+}
+
+.accueil-modal-close {
+  margin-top: 1.25rem;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.accueil-modal-close:hover {
+  color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+  .accueil-header { padding: 1rem; }
+  .accueil-header-inner { gap: 0.75rem; }
+  .accueil-nav { gap: 0.5rem; flex-wrap: wrap; }
+  .accueil-nav-link,
+  .accueil-nav-btn {
+    padding: 0.75rem 1.25rem;
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .accueil-hero-content { padding: 1.5rem; }
+  .accueil-hero-actions { flex-direction: column; gap: 0.75rem; }
+  .accueil-cta {
+    justify-content: center;
+    width: 100%;
+    min-height: 52px;
+    padding: 1rem 1.5rem;
+    font-size: 1.05rem;
+  }
+  .accueil-cta.primary.large { min-height: 56px; }
+  .accueil-footer-links { flex-wrap: wrap; gap: 0.5rem; }
+  .accueil-footer-links a,
+  .accueil-footer-link-btn {
+    padding: 0.6rem 1rem;
+    min-height: 44px;
+  }
+}
+
+@media (max-width: 480px) {
+  .accueil-header { padding: 0.75rem 1rem; }
+  .accueil-logo-text { font-size: 1.25rem; }
+  .accueil-nav { justify-content: center; }
+  .accueil-cta { min-height: 54px; font-size: 1rem; }
+  .accueil-hero h1 { font-size: 2rem; }
+  .accueil-modal-buttons { flex-direction: column; }
+  .accueil-modal-btn {
+    width: 100%;
+    min-height: 52px;
+    justify-content: center;
+  }
+}

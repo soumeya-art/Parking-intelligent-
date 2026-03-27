@@ -1,0 +1,4 @@
+# Permettre à PHP de recevoir l'en-tête Authorization (WAMP/Apache)
+RewriteEngine On
+RewriteCond %{HTTP:Authorization} .
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]

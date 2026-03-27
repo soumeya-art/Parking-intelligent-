@@ -1,0 +1,142 @@
+.parking-map {
+  animation: fadeIn 0.3s ease;
+}
+
+.floor-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.floor-tab {
+  padding: 0.6rem 1.25rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.floor-tab:hover {
+  color: var(--text-primary);
+  border-color: var(--accent);
+}
+
+.floor-tab.active {
+  background: var(--accent);
+  color: var(--bg-primary);
+  border-color: var(--accent);
+}
+
+.legend {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 4px;
+}
+
+.dot.available { background: var(--available); }
+.dot.occupied { background: var(--occupied); }
+.dot.reserved { background: var(--reserved); }
+
+.map-container {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.zone-section {
+  margin-bottom: 2rem;
+}
+
+.zone-section:last-child {
+  margin-bottom: 0;
+}
+
+.zone-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.spots-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.spot {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.spot.available {
+  background: rgba(34, 197, 94, 0.2);
+  color: var(--available);
+}
+
+.spot.available:hover {
+  background: rgba(34, 197, 94, 0.4);
+  transform: scale(1.05);
+}
+
+.spot.occupied {
+  background: rgba(239, 68, 68, 0.2);
+  color: var(--occupied);
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+.spot.reserved {
+  background: rgba(245, 158, 11, 0.2);
+  color: var(--reserved);
+  cursor: not-allowed;
+}
+
+.spot.selected {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-glow);
+}
+
+.spot-detail {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.spot-detail h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.spot-detail p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin: 0.25rem 0;
+}
