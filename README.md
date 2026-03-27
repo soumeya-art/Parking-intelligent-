@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # MOUBARIK Parking - Djibouti
 
 Application web de gestion intelligente des parkings pour MOUBARIK à Djibouti.  
@@ -11,23 +10,7 @@ Base de données **MySQL/WAMP**, authentification, tableau de bord administrateu
 - **Dashboard admin** – Statistiques, gestion des places, tarifs, réservations
 - **Logo personnalisé** – Thème sombre raffiné
 
-## Installation (WAMP)
 
-### 1. Copier le projet
-
-Placez le dossier `parking intelligent` dans `C:\wamp64\www\`  
-(nom suggéré: `parking-intelligent` pour éviter les espaces dans l'URL)
-
-### 2. Base de données
-
-**Option A – Script automatique**  
-Allez sur : `http://localhost/parking-intelligent/api/install.php`  
-Puis **supprimez** le fichier `api/install.php`.
-
-**Option B – phpMyAdmin**  
-1. Ouvrez `http://localhost/phpmyadmin`
-2. Créez une base `moubarik_parking`
-3. Exécutez le contenu de `api/db.sql`
 
 ### 3. Connexions par défaut
 
@@ -46,32 +29,6 @@ VITE_API_URL=http://localhost/parking-intelligent/api
 
 (Si le dossier a un espace : `http://localhost/parking%20intelligent/api`)
 
-### 5. Lancer l'application
-
-```bash
-npm install
-npm run dev
-```
-
-Ouvrez `http://localhost:5173`
-
-## Structure
-
-- `api/` – Backend PHP (auth, parking)
-- `src/` – Application React
-- `src/pages/Admin/` – Pages administration
-=======
-#  Système de Parking Intelligent
-
-##  Présentation du projet
-
-Ce projet consiste à développer une application web permettant de gérer intelligemment les places de stationnement.
-
-L’objectif principal est de faciliter la recherche, la réservation et le paiement des places de parking, tout en améliorant la gestion globale des parkings.
-
-Ce projet a été réalisé dans un cadre académique.
-
----
 
 ##  Objectifs
 
@@ -114,7 +71,7 @@ parking-intelligent/
 ### 1. Cloner le projet
 
 ```bash
-git clone https://github.com/ton-username/parking-intelligent.git
+git clone https://github.com/soumeya-art/parking-intelligent.git
 cd parking-intelligent
 ```
 
@@ -124,12 +81,21 @@ cd parking-intelligent
 npm install
 ```
 
-### 3. Configurer la base de données
+### 1. Copier le projet
 
-* Importer le fichier `db.sql` dans MySQL
-* Configurer le fichier `.env`
+Placez le dossier `parking intelligent` dans `C:\wamp64\www\`  
+(nom suggéré: `parking-intelligent` pour éviter les espaces dans l'URL)
 
----
+### 2. Base de données
+
+**Option A – Script automatique**  
+Allez sur : `http://localhost/parking-intelligent/api/install.php`  
+Puis **supprimez** le fichier `api/install.php`.
+
+**Option B – phpMyAdmin**  
+1. Ouvrez `http://localhost/phpmyadmin`
+2. Créez une base `moubarik_parking`
+3. Exécutez le contenu de `api/db.sql`
 
 ##  Lancement du projet
 
@@ -148,17 +114,7 @@ npm run dev
 npm run dev:api
 ``` 
 
----
 
-##  Fonctionnalités
-
-* Inscription et connexion des utilisateurs
-* Recherche de places disponibles
-* Réservation de parking
-* Gestion des utilisateurs
-* Paiement (simulation)
-
----
 
 ##  Tests
 
@@ -195,4 +151,4 @@ Le rapport détaillé du projet est disponible dans ce dépôt GitHub.
 ##  Remarque
 
 Ce projet a été réalisé dans un but pédagogique.
->>>>>>> 953fc902197ebd59d367de9194d74d808d753a55
+
