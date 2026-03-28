@@ -103,13 +103,13 @@ Bash
 - npm run dev:api
 ## Tests réalisés
 Les tests effectués incluent :
-✅ Tests fonctionnels (connexion, réservation…)
-✅ Tests d’interface utilisateur
-✅ Vérification de la base de données
-✅ Tests de stabilité du système
+- Tests fonctionnels (connexion, réservation…)
+- Tests d’interface utilisateur
+- Vérification de la base de données
+- Tests de stabilité du système
 ### Résultat :
-✔️ Application stable et fonctionnelle
-🌐 Déploiement
+- Application stable et fonctionnelle
+- Déploiement
 L’application peut être déployée sur :
 Serveur local (WAMP/XAMPP)
 Plateforme gratuite (ex : InfinityFree)
