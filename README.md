@@ -50,6 +50,7 @@ Suivi global de l’activité
 | Admin     | admin@moubarik.dj  | password     |
 | Utilisateur | user@moubarik.dj | password     |
 ## Structure du projet
+bash
 parking-intelligent/
 │── api/              # Backend (PHP API)
 │── public/           # Fichiers publics
