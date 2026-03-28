@@ -52,16 +52,16 @@ Suivi global de l’activité
 ## Structure du projet
 bash
 parking-intelligent/
-│── api/              # Backend (PHP API)
-│── public/           # Fichiers publics
-│── src/              # Code source frontend
-│── supabase/         # Configuration Supabase
-│── auth/             # Gestion authentification
-│── config/           # Fichiers de configuration
-│── db.sql            # Script base de données
-│── .env              # Variables d’environnement
-│── package.json      # Dépendances Node.js
-│── README.md         # Documentation du projet
+│── api/              
+│── public/           
+│── src/              
+│── supabase/         
+│── auth/             
+│── config/           
+│── db.sql            
+│── .env              
+│── package.json      
+│── README.md         
 ## Installation
 ### 1. Cloner le projet
 Bash
