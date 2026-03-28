@@ -108,8 +108,8 @@ Les tests effectués incluent :
 - Vérification de la base de données
 - Tests de stabilité du système
 ### Résultat :
-- Application stable et fonctionnelle
-- Déploiement
+Application stable et fonctionnelle
+#### Déploiement
 L’application peut être déployée sur :
   - Serveur local (WAMP/XAMPP)
   - Plateforme gratuite (ex : InfinityFree)
