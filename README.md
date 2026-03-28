@@ -12,21 +12,21 @@ Permettre la réservation en ligne
 Offrir une solution moderne, intuitive et efficace
 Améliorer l’organisation et la rentabilité des parkings
 ## Équipe du projet
-Soumeya Bachir Mahamoud
-Sihan Abdourahman
-Simen Abdourahman Hassan
-Salma Aden
+- Soumeya Bachir Mahamoud
+- Sihan Abdourahman
+- Simen Abdourahman Hassan
+- Salma Aden
 🎓 Niveau : Licence 3 Informatique
 ### Technologies utilisées
-🔹 Frontend
+ - Frontend
 HTML5
 CSS3 (Thème sombre personnalisé)
 JavaScript (Vite)
-🔹 Backend
+ - Backend
 PHP
-🔹 Base de données
+- Base de données
 MySQL (WAMP/XAMPP)
-🔹 Outils & Environnement
+  - Outils & Environnement
 Node.js
 Supabase
 Git & GitHub
