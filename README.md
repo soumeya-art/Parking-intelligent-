@@ -16,7 +16,7 @@ Améliorer l’organisation et la rentabilité des parkings
 - Sihan Abdourahman
 - Simen Abdourahman Hassan
 - Salma Aden
-🎓 Niveau : Licence 3 Informatique
+- 🎓 Niveau : Licence 3 Informatique
 ### Technologies utilisées
  - Frontend
 HTML5
@@ -26,7 +26,7 @@ JavaScript (Vite)
 PHP
 - Base de données
 MySQL (WAMP/XAMPP)
-  - Outils & Environnement
+- Outils & Environnement
   - Node.js
   - Supabase
   - Git & GitHub
@@ -52,7 +52,7 @@ Suivi global de l’activité
 ## Structure du projet
 bash
 parking-intelligent/
-│── api/          Backend (PHP API)      
+│── api/            
 │── public/           
 │── src/              
 │── supabase/         
