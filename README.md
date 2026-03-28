@@ -111,8 +111,8 @@ Les tests effectués incluent :
 - Application stable et fonctionnelle
 - Déploiement
 L’application peut être déployée sur :
-Serveur local (WAMP/XAMPP)
-Plateforme gratuite (ex : InfinityFree)
+  - Serveur local (WAMP/XAMPP)
+  - Plateforme gratuite (ex : InfinityFree)
 ## Licence
 Ce projet est réalisé dans un cadre pédagogique.
 Toute utilisation commerciale nécessite une autorisation préalable.
