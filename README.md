@@ -52,7 +52,7 @@ MySQL (WAMP/XAMPP)
 ## Structure du projet
 bash
 parking-intelligent/
-│── api/                                                  
+│── api/              
 │── public/           
 │── src/              
 │── supabase/         
@@ -62,6 +62,7 @@ parking-intelligent/
 │── .env              
 │── package.json      
 │── README.md         
+       
 ## Installation
 ### 1. Cloner le projet
 Bash
