@@ -32,17 +32,17 @@ MySQL (WAMP/XAMPP)
   - Git & GitHub
 ## Fonctionnalités
 ### Côté Utilisateur
-Inscription et connexion sécurisée
-Consultation des places disponibles
-Visualisation du plan du parking
-Réservation de place en ligne
-Historique des réservations
+- Inscription et connexion sécurisée
+- Consultation des places disponibles
+- Visualisation du plan du parking
+- Réservation de place en ligne
+- Historique des réservations
 ### Côté Administrateur
-Tableau de bord avec statistiques
-Gestion des places de parking
-Gestion des réservations
-Gestion des tarifs
-Suivi global de l’activité
+- Tableau de bord avec statistiques
+- Gestion des places de parking
+- Gestion des réservations
+- Gestion des tarifs
+- Suivi global de l’activité
 ### Comptes de test
 
 | Rôle       | Email              | Mot de passe |
@@ -65,8 +65,8 @@ parking-intelligent/
 ## Installation
 ### 1. Cloner le projet
 Bash
-git clone https://github.com/soumeya-art/parking-intelligent.git
-cd parking-intelligent
+git clone https://github.com/soumeya-art/parking-intelligent-.git
+cd parking-intelligent-
 ### 2. Installer les dépendances
 Bash
 npm install
@@ -74,7 +74,7 @@ npm install
 #### Étape 1 : Copier le projet
 Placer le dossier dans :
 
-C:\wamp64\www\parking-intelligent
+C:\wamp64\www\parking-intelligent-
 ⚠️ Éviter les espaces dans le nom du dossier
 #### Étape 2 : Initialisation de la base
 #### ✔️ Option A – Installation automatique
