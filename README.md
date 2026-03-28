@@ -1,154 +1,118 @@
-# MOUBARIK Parking - Djibouti
-
-Application web de gestion intelligente des parkings pour MOUBARIK à Djibouti.  
-Base de données **MySQL/WAMP**, authentification, tableau de bord administrateur et utilisateur.
-
+# MOUBARIK Parking – Djibouti
+## Description du projet
+MOUBARIK Parking est une application web intelligente dédiée à la gestion des parkings à Djibouti.
+Elle permet d’automatiser la gestion des places de stationnement, de faciliter la réservation en ligne et d’optimiser l’expérience des utilisateurs.
+Le système propose deux interfaces principales :
+Une interface utilisateur (conducteur)
+Une interface administrateur
+## Objectifs
+Automatiser la gestion des parkings
+Réduire le temps de recherche d’une place
+Permettre la réservation en ligne
+Offrir une solution moderne, intuitive et efficace
+Améliorer l’organisation et la rentabilité des parkings
+## Équipe du projet
+Soumeya Bachir Mahamoud
+Sihan Abdourahman
+Simen Abdourahman Hassan
+Salma Aden
+🎓 Niveau : Licence 3 Informatique
+### Technologies utilisées
+🔹 Frontend
+HTML5
+CSS3 (Thème sombre personnalisé)
+JavaScript (Vite)
+🔹 Backend
+PHP
+🔹 Base de données
+MySQL (WAMP/XAMPP)
+🔹 Outils & Environnement
+Node.js
+Supabase
+Git & GitHub
 ## Fonctionnalités
-
-- **Connexion / Inscription** – Conducteurs et administrateurs
-- **Dashboard utilisateur** – Places disponibles, plan, réservation, historique
-- **Dashboard admin** – Statistiques, gestion des places, tarifs, réservations
-- **Logo personnalisé** – Thème sombre raffiné
-
-
-
-### 3. Connexions par défaut
+### Côté Utilisateur
+Inscription et connexion sécurisée
+Consultation des places disponibles
+Visualisation du plan du parking
+Réservation de place en ligne
+Historique des réservations
+### Côté Administrateur
+Tableau de bord avec statistiques
+Gestion des places de parking
+Gestion des réservations
+Gestion des tarifs
+Suivi global de l’activité
+### Comptes de test
 
 | Rôle       | Email              | Mot de passe |
 |-----------|--------------------|--------------|
 | Admin     | admin@moubarik.dj  | password     |
 | Utilisateur | user@moubarik.dj | password     |
-
-### 4. Configuration React
-
-Créez un fichier `.env` :
-
-```
-VITE_API_URL=http://localhost/parking-intelligent/api
-```
-
-(Si le dossier a un espace : `http://localhost/parking%20intelligent/api`)
-
-
-##  Objectifs
-
-* Automatiser la gestion des parkings
-* Réduire le temps de recherche d’une place
-* Permettre la réservation en ligne
-* Offrir une solution moderne et efficace
-
----
-
-##  Technologies utilisées
-
-* Frontend : HTML, CSS, JavaScript (Vite)
-* Backend : PHP
-* Base de données : MySQL
-* Outils : Node.js, Supabase
-
----
-
-## 📁 Structure du projet
-
-```bash
+## Structure du projet
 parking-intelligent/
-│── api/              
-│── public/           
-│── src/              
-│── supabase/         
-│── auth/             
-│── config/           
-│── db.sql            
-│── .env              
-│── package.json      
-│── README.md         
-```
-
----
-
-##  Installation
-
+│── api/              # Backend (PHP API)
+│── public/           # Fichiers publics
+│── src/              # Code source frontend
+│── supabase/         # Configuration Supabase
+│── auth/             # Gestion authentification
+│── config/           # Fichiers de configuration
+│── db.sql            # Script base de données
+│── .env              # Variables d’environnement
+│── package.json      # Dépendances Node.js
+│── README.md         # Documentation du projet
+## Installation
 ### 1. Cloner le projet
-
-```bash
+Bash
 git clone https://github.com/soumeya-art/parking-intelligent.git
 cd parking-intelligent
-```
-
 ### 2. Installer les dépendances
-
-```bash
+Bash
 npm install
-```
+#### Configuration de la base de données
+#### Étape 1 : Copier le projet
+Placer le dossier dans :
 
-### 1. Copier le projet
+C:\wamp64\www\parking-intelligent
+⚠️ Éviter les espaces dans le nom du dossier
+#### Étape 2 : Initialisation de la base
+#### ✔️ Option A – Installation automatique
+Accéder à :
 
-Placez le dossier `parking intelligent` dans `C:\wamp64\www\`  
-(nom suggéré: `parking-intelligent` pour éviter les espaces dans l'URL)
-
-### 2. Base de données
-
-**Option A – Script automatique**  
-Allez sur : `http://localhost/parking-intelligent/api/install.php`  
-Puis **supprimez** le fichier `api/install.php`.
-
-**Option B – phpMyAdmin**  
-1. Ouvrez `http://localhost/phpmyadmin`
-2. Créez une base `moubarik_parking`
-3. Exécutez le contenu de `api/db.sql`
-
-##  Lancement du projet
-
-### Frontend
-
-```bash
+http://localhost/parking-intelligent/api/install.php
+Puis supprimer le fichier install.php après exécution.
+#### ✔️ Option B – phpMyAdmin
+Ouvrir : http://localhost/phpmyadmin
+Créer une base : moubarik_parking
+Importer le fichier : db.sql
+#### Configuration du frontend
+Créer un fichier .env :
+Environment
+VITE_API_URL=http://localhost/parking-intelligent/api
+ Lancement du projet
+Frontend
+Bash
 npm run dev
-```
-
-### Backend
-
-* Installer XAMPP ou WAMP
-* Démarrer Apache et MySQL
-* lancer
- ```bash
+Backend
+Démarrer Apache et MySQL (WAMP/XAMPP)
+Bash
 npm run dev:api
-``` 
-
-
-
-##  Tests
-
-Des tests ont été effectués afin de vérifier :
-
-* le bon fonctionnement du système
-* la stabilité de l’application
-
----
-
-##  Déploiement
-
-Le projet peut être déployé sur un serveur local ou une plateforme gratuite comme InfinityFree.
-
----
-
-##  Rapport
-
-Le rapport détaillé du projet est disponible dans ce dépôt GitHub.
-
----
-
-##  Auteur
-
-* Nom :
-  -Soumeya Bachir Mahamoud
-  -Sihan Abdourahman
-  -Simen Abdourahman Hassan
-  -Salma Aden
-* Niveau : Licence 3 Informatique
-
----
-
-##  Remarque
-
-Ce projet a été réalisé dans un but pédagogique.
-
+## Tests réalisés
+Les tests effectués incluent :
+✅ Tests fonctionnels (connexion, réservation…)
+✅ Tests d’interface utilisateur
+✅ Vérification de la base de données
+✅ Tests de stabilité du système
+### Résultat :
+✔️ Application stable et fonctionnelle
+🌐 Déploiement
+L’application peut être déployée sur :
+Serveur local (WAMP/XAMPP)
+Plateforme gratuite (ex : InfinityFree)
+## Licence
+Ce projet est réalisé dans un cadre pédagogique.
+Toute utilisation commerciale nécessite une autorisation préalable.
+## Remerciements
+Nous remercions notre enseignant pour son encadrement ainsi que toutes les personnes ayant contribué à la réalisation de ce projet.
+## Remarque
+Ce projet a été conçu dans un objectif d’apprentissage en développement web et en gestion de bases de données.
