@@ -16,7 +16,7 @@ Améliorer l’organisation et la rentabilité des parkings
 - Sihan Abdourahman
 - Simen Abdourahman Hassan
 - Salma Aden
-- 🎓 Niveau : Licence 3 Informatique
+  ### 🎓 Niveau : Licence 3 Informatique
 ### Technologies utilisées
  - Frontend
 HTML5
