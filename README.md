@@ -27,9 +27,9 @@ PHP
 - Base de données
 MySQL (WAMP/XAMPP)
   - Outils & Environnement
-Node.js
-Supabase
-Git & GitHub
+  - Node.js
+  - Supabase
+  - Git & GitHub
 ## Fonctionnalités
 ### Côté Utilisateur
 Inscription et connexion sécurisée
