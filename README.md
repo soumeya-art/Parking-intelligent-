@@ -52,7 +52,7 @@ Suivi global de l’activité
 ## Structure du projet
 bash
 parking-intelligent/
-│── api/         # Backend (PHP API)      
+│── api/          Backend (PHP API)      
 │── public/           
 │── src/              
 │── supabase/         
