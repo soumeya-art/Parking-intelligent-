@@ -52,6 +52,7 @@ MySQL (WAMP/XAMPP)
 ## Structure du projet
 bash
 parking-intelligent/
+
 │── api/              
 │── public/           
 │── src/              
