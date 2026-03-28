@@ -94,13 +94,13 @@ Créer un fichier .env :
 Environment
 VITE_API_URL=http://localhost/parking-intelligent/api
  Lancement du projet
-Frontend
+- Frontend
 Bash
-npm run dev
-Backend
+- npm run dev
+- Backend
 Démarrer Apache et MySQL (WAMP/XAMPP)
 Bash
-npm run dev:api
+- npm run dev:api
 ## Tests réalisés
 Les tests effectués incluent :
 ✅ Tests fonctionnels (connexion, réservation…)
