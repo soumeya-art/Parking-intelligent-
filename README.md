@@ -51,6 +51,7 @@ MySQL (WAMP/XAMPP)
 | Utilisateur | user@moubarik.dj | password     |
 ## Structure du projet
 bash
+
 parking-intelligent/
 
 │── api/              
