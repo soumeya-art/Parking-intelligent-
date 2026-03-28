@@ -83,7 +83,7 @@ C:\wamp64\www\parking-intelligent-
 #### ✔️ Option A – Installation automatique
 Accéder à :
 
-http://localhost/parking-intelligent/api/install.php
+http://localhost/parking-intelligent-/api/install.php
 Puis supprimer le fichier install.php après exécution.
 #### ✔️ Option B – phpMyAdmin
 Ouvrir : http://localhost/phpmyadmin
@@ -92,7 +92,7 @@ Importer le fichier : db.sql
 #### Configuration du frontend
 Créer un fichier .env :
 Environment
-VITE_API_URL=http://localhost/parking-intelligent/api
+VITE_API_URL=http://localhost/parking-intelligent-/api
  Lancement du projet
 - Frontend
 Bash
